@@ -20,10 +20,6 @@ def iip():
     else:
         print("intruder alert!")
         return "Leave me alone!"
-@app.route('/clips-bot')
-def clips():
-    page = requests.get("https://script.google.com/a/america.gov/macros/s/"+os.environ.get('apps_script_id')+"AKfycbxxQho0A5njhVr8FGUGtPSaG2N8d2pCuEXjaoqCbkSed6DiCSM/exec").content
-    return page
 @app.route('/cnn')
 def comms():
     return redirect("https://storage.googleapis.com/identvclips/playme.mp4")
