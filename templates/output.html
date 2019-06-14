@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List of videos based on query</title>
+  </head>
+  <body>
+    <div class="container">
+      <p>Number of clips found: {{num}}</p>
+      <table>
+        <tr><th>Here are all the links</th></tr>
+        {% for n in urls %}
+        <tr><td><a href>{{n}}</a></td></tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
