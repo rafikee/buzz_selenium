@@ -1,12 +1,15 @@
 <form method="POST">
-  Query: <input type="text" name="query" size="200" value='seg_ar:(*اسرائيل* OR *فلسطين* OR (*ضف* AND *غربي*) OR غز* OR *قدس OR *بحرين) AND seg_ar:(*مريك* OR ك*شن*ر OR *جرينبلا* OR تر*مب OR (صفق* AND *قرن))'><br>
-  Start Date: <input type="text" name="start_date" size="50" value='2019-06-07T00:00:00Z'><br>
-  End Date: <input type="text" name="end_date" size="50" value='2019-06-13T00:00:00Z'><br>
+  <!--Query <input type="text" name="query" size="200" value='seg_ar:(*اسرائيل* OR *فلسطين* OR (*ضف* AND *غربي*) OR غز* OR *قدس OR *بحرين) AND seg_ar:(*مريك* OR ك*شن*ر OR *جرينبلا* OR تر*مب OR (صفق* AND *قرن))'><br><br>-->
+  Query<br><textarea name="query" rows="10" cols="150">"*فلسطين*" "*صفق* *قرن*"</textarea><br><br>
+  Start Date (GMT) <input type="datetime-local" name="start_date" value='2019-06-07T00:00'><br><br>
+  End Date (GMT) <input type="datetime-local" name="end_date" value='2019-06-13T00:00'><br><br>
+  Limit Results <input type="number" name="limit" min="1" max="100" step="1" value="10"><br><br>
+  Channel
   <select name="channel">
     <option value="Al-Jazeerah" selected>Al-Jazeerah</option>
     <option value="AlArabiya">AlArabiya</option>
     <option value="Alalam">Alalam</option>
     <option value="balls">IDENTV SUCCKSS</option>
-  </select><br>
-  <input type="submit" value="IF YOU ONLY DARE!">
+  </select><br><br>
+  <input type="submit" value="Run Custom Query...">
 </form>

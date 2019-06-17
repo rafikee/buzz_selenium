@@ -7,13 +7,23 @@ def get_videos(data):
     base_url = "http://mm.apptek.com:8983/solr/media/select"
     media_url = "http://mm.apptek.com/media"
     apptek_url = "http://mm.apptek.com/tv/watch?id="
+    time_concat = ":00Z"
 
     channel = data['channel']
     language = 'ar'
     query = data['query']
-    results_limit = 100000
-    start_date = data['start_date']
-    end_date = data['end_date']
+    results_limit = data['limit']
+    start_date = data['start_date'] + time_concat
+    end_date = data['end_date'] + time_concat
+    query = [x for x in query.split('"') if x and not x.isspace()]
+    for x, phrase in enumerate(query):
+        if ' ' in phrase:
+            query[x] = phrase.replace(" ", " AND ")
+    query = ["(" + x + ")" for x in query]
+    query = " OR ".join(query)
+    query = "seg_ar:(" + query + ")"
+
+    print(query)
 
     q = 'source:' + channel + ' AND ' + 'lang:' + language + ' AND ' + query
 

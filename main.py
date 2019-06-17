@@ -38,6 +38,7 @@ def submit_query():
         'start_date' : request.form['start_date'],
         'end_date' : request.form['end_date'],
         'channel' : request.form['channel'],
+        'limit' : request.form['limit'],
     }
     num, urls = get_videos(submit_data)
 
