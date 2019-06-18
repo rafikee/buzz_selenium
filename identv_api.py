@@ -15,13 +15,16 @@ def get_videos(data):
     results_limit = data['limit']
     start_date = data['start_date'] + time_concat
     end_date = data['end_date'] + time_concat
-    query = [x for x in query.split('"') if x and not x.isspace()]
-    for x, phrase in enumerate(query):
-        if ' ' in phrase:
-            query[x] = phrase.replace(" ", " AND ")
-    query = ["(" + x + ")" for x in query]
-    query = " OR ".join(query)
-    query = "seg_ar:(" + query + ")"
+    query = query.split('\r\n')
+    for i, line in enumerate(query):
+        line = [x for x in line.split('"') if x and not x.isspace()]
+        for x, phrase in enumerate(line):
+            if ' ' in phrase:
+                line[x] = phrase.replace(" ", " AND ")
+        line = ["(" + x + ")" for x in line]
+        line = " OR ".join(line)
+        query[i] = "seg_ar:(" + line + ")"
+    query = " AND ".join(query)
 
     print(query)
 
