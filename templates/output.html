@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>List of videos based on query</title>
+    <title>Yay Results!</title>
   </head>
+
+  <style>
+    table {
+      table-layout: auto;
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    table .absorbing-column {
+    width: 100%;
+    }
+  </style>
+
   <body>
     <div class="container">
       <p>Total number of clips found: {{num}}</p>
       <table>
         <tr><th>Here are all the links</th></tr>
-        {% for n in urls %}
-        <tr><td><a href="{{n}}" target="_blank">{{n}}</a></td></tr>
+        {% for n in payload %}
+        <tr>
+          <td><a href="{{n.video_url}}" target="_blank">{{n.video_url}}</a></td>
+          <td>{% for token in n.tokens %} {{token}} {% endfor %}</td>
+        </tr>
         {% endfor %}
       </table>
     </div>
