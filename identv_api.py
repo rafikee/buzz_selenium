@@ -52,30 +52,16 @@ def get_videos(data):
     r = requests.get(base_url, params = payload)
     data = r.json()
 
-    #[something for segment in clip['seg_ar']]
-
     payload = [
         {
             'video_url' : apptek_url + clip['media'],
             'tokens' : pattern.findall(' '.join(clip['seg_ar'])),
+            # 'mp4' : "/".join((media_url, channel, parse(clip['start_dt']).date().strftime('%Y/%m/%d'), clip['media'] + '.mp4')),
+            # Above if you want mp4 link
         }
         for clip in data['response']['docs']
     ]
 
-    #video_urls = [apptek_url + clip['media'] for clip in data['response']['docs']]
-
-    ''' If we want MP4 and link to IDENTV
-
-    video_urls = [
-        {
-            'mp4' : "/".join((media_url, channel, parse(clip['start_dt']).date().strftime('%Y/%m/%d'), clip['media'] + '.mp4')),
-            'apptek' : apptek_url + clip['media'],
-        }
-        for clip in data['response']['docs']
-    ]
-    '''
-
-    ''' If we just want link to IDENTV'''
-    video_urls = [apptek_url + clip['media'] for clip in data['response']['docs']]
     num_vidoes = data['response']['numFound']
+    
     return num_vidoes, payload
