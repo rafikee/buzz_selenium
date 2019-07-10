@@ -1,17 +1,7 @@
-#use this command to run
-'''flask run -h 0.0.0.0 -p 8080'''
 from flask import Flask, request, redirect, render_template
 from identv_api import get_videos
 
 app = Flask(__name__)
-
-@app.route('/')
-def hello():
-    return 'You love IIP'
-
-@app.route('/cnn')
-def comms():
-    return redirect("https://storage.googleapis.com/identvclips/playme.mp4")
 
 @app.route('/tv')
 def input_form():
